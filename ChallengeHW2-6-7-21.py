@@ -19,38 +19,44 @@
 
 
 # Print good bye
-
-print("**************************")
 print("*       My game          *")
 print("*         Menu           *")
-print("*                        *")
 print("*    1.- level1          *")
 print("*    2.- level2          *")
-print("*    3.- Print scores    *")
-print("*    4.- Exit Game       *")
+print("*    3 - level3          *")
+print("*    4.- level4          *")
+print("*    5.- level5          *")
+print("*    6.- Print scores    *")
+print("*    7.- Exit Game       *")
 print("**************************")
-answer = int(input())
+answer = int(input().strip())
 
 while answer!=4:
     if answer == 1:
-        print("welcome to level 1. (INSERT LEVEL HERE)")
+        print("welcome to level 1. (INSERT LEVEL HERE)".title())
     if answer == 2:
-        print("welcome to level 2. (INSERT LEVEL HERE)")
+        print("welcome to level 2. (INSERT LEVEL HERE)".swapcase())
     if answer == 3:
         print("Highscore: Ben - 1500 pts")
-        print("second: jadon")
-        print("third: zander")
-        print("fourth: Thomas")
-        print("fifth: Mateo")
-        print("sixth: Brenna")
+        print("second: jadon - 1200")
+        print("third: zander - 972")
+        print("fourth: Thomas - 542")
+        print("fifth: Mateo - 388")
+        print("sixth: Brenna - -200")
+        print("seventh: Payton - -457")
+    if answer == 4:
+        print("welcome to level 4. (INSERT LEVEL HERE)".
     print("**************************")
     print("*       My game          *")
     print("*         Menu           *")
-    print("*                        *")
     print("*    1.- level1          *")
     print("*    2.- level2          *")
-    print("*    3.- Print scores    *")
-    print("*    4.- Exit Game       *")
+    print("*    3 - level3          *")
+    print("*    4.- level4          *")
+    print("*    5.- level5          *")
+    print("*    6.- Print scores    *")
+    print("*    7.- Exit Game       *")
     print("**************************")
     answer = int(input())
-print("GOOD JOB")
+    
+print("GOODBYE HAVE A NICE DAY!".center(100))
