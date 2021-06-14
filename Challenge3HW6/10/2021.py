@@ -9,6 +9,16 @@
 #4  Find the index where an element is in the list
 #5 reverse the order of the array
 
+print("*      SPORTS MENU       *") 
+print("*    1.- soccer          *")
+print("*    2.- basketball      *")
+print("*    3 - football        *")
+print("*    4.- baseball        *")
+print("*    5.- lacrosse        *")
+print("*    6.- volleyball      *")
+print("*    7.- Exit list       *")
+print("**************************")
+
 MySports=["Soccer", "basketball", "Football", "baseball", "Lacrosse"]
 print(MySports)
 MySports.append("volleyball")
@@ -28,4 +38,11 @@ else:
     Counter=len(MySports)
 
 
+n=int(input("which sport"))
+
+if "FIND" in x:
+    print("what do you want to find")
+    Var=input()
+    indx=MySports.index(Var)
+    print("index of ",Var," is ", indx)
 
