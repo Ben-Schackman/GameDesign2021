@@ -1,11 +1,13 @@
-#Ben Schackman
-#06/15/2021
+#ben Schakman
+#06/11/2021
+#Word Game
 # We are creating a list of words
 # randomly select a word from the list for the user to guess
 # give the user some turns
 # show the word to the user with the characters guessed  
 # play as long as the user has turns or has guessed the word
 # import random
+
 
 
 import random 
@@ -18,7 +20,7 @@ os.system('cls')
 gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware'] 
 name=" " 
 score=0 #to total the number of wins 
-file="MariaGame.txt" 
+file="BenGame.txt" 
 dt=datetime.datetime.now() 
 linef=str(dt.month)+"/"+str(dt.day)+"/"+str(dt.year)+"\t"+dt.strftime("%A") 
 def menu():  #create menu and get choice 
@@ -75,15 +77,15 @@ def PlayGame(answer, score):    #My function to play game
                     print("nice guess!") 
                 guesses += newGuess  
             else: 
-                print("you used this one already") 
+                print("you used this letter already") 
             updateWord(word, guesses) 
             #end of whole loop with  
         if counter==0: 
             #print("") 
-            print("\n Fantastic you are Champion") 
+            print("\n Fantastic you are the winner") 
             score +=1 
         else: 
-            print("Sorry, try harder next time") 
+            print("Sorry, better luck necxt time") 
         # find a way to decide if the person won the game or not  
         # keep a count of how many words they guessed    
         # #ask user if the want to play again 
@@ -102,12 +104,6 @@ while check:
     elif "3" in varChoice: 
         name=input("What is your name? ") 
     else: 
-        print("Thank you ! ") 
+        print("Thank you! ") 
         check=False 
     time.sleep(1) 
-
-     
-
- 
-
-
