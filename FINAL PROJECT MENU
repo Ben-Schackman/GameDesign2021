@@ -1,0 +1,114 @@
+#Ben Schackman
+#Making a Menu 6/23/2021
+#first part of the final project
+
+import os, pygame, math, random, time, sys
+
+from pygame.draw import rect 
+
+os.system('cls')
+pygame.init()
+pygame.time.delay(75)
+#making the screen
+WIDTH=800
+HEIGHT=800
+Rows=3
+Colums=3
+Wbox=25
+screen = pygame.display.set_mode((WIDTH,HEIGHT))
+pygame.display.set_caption("TIC TAC TOE GAME")
+#Define Colors
+BLACK=[0,0,0]
+WHITE=[255,255,255]
+RED=[255,0,0]
+def display_message(message):
+    print("hello")    
+
+TitleFont= pygame.font.SysFont("comicsans", 70)  #set the type of font and the size 
+WordFont=pygame.font.SysFont("comicsans", 50)
+LetterFont=pygame.font.SysFont("comicsans",40)
+def display_message(message):
+    pygame.time.delay(500)
+    screen.fill(WHITE)
+    textPRINT= TitleFont.render(message, 1, BLACK)
+    screen.blit(textPRINT, (WIDTH/2 - textPRINT.get_width()/2, HEIGHT/2 - textPRINT.get_height()/2))
+    pygame.display.update()
+    pygame.time.delay(2000)
+
+click=False
+def game_Init(message):
+    test=True
+    while test:
+       
+        #Print message
+        screen.fill(WHITE)
+        text = WordFont.render(message, 1, BLACK)
+        screen.blit(text, (WIDTH/2 - text.get_width()/2, round(HEIGHT/3)))
+       
+        #rect1
+        rect1=pygame.Rect(130, 350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect1, width=1)
+        text = LetterFont.render("level 1", 1, BLACK)
+        screen.blit(text, (130 , 350))
+       
+        #rect 2
+        rect2=pygame.Rect(280, 350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect2, width=1)
+        text = LetterFont.render("level 2", 1, BLACK)
+        screen.blit(text, (280 , 350))
+        
+        Rect3=pygame.Rect(430,350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect2, width=1)
+        text = LetterFont.render("Level3", 1, BLACK)
+        screen.blit(text, (430 , 350))
+        
+        Rect4=pygame.Rect(580,350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect2, width=1)
+        text = LetterFont.render("EXIT GAME", 1, BLACK)
+        screen.blit(text, (580 , 350))
+        
+
+       
+        #Check collide Point and rectangle
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit() 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mx,my= pygame.mouse.get_pos()
+                if rect1.collidepoint((mx,my)):
+                    #call main function
+                    display_message("Level 1!!")
+                if rect2.collidepoint((mx,my)):
+                    display_message("Level 2!!")
+                if Rect3.collidepoint((mx,my)):
+                    display_message("Level 3!!")
+                if Rect4.collidepoint((mx,my)):
+                    display_message("EXIT GAME")
+
+
+        pygame.display.update()  
+def main():
+    check=True 
+    while check:
+        for event in pygame.event.get():
+            if event.type== pygame.QUIT:
+                check= False
+        screen.fill(WHITE)
+        display_message("Level 1")
+        display_message("Level 2")
+        display_message("Level 3")
+
+
+        pygame.display.update()
+        check=False
+
+while True:
+    game_Init("TIC TAC TOE")
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit() 
+
+
+   
