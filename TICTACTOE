@@ -1,136 +1,126 @@
 #Ben Schackman
-#Making a Menu 6/23/2021
-#first part of the final project
+#Making TICTACTOE Board
 
-import os, pygame, math, random, time, sys
 
-from pygame.draw import rect
-from pygame.time import delay 
 
-os.system('cls')
-pygame.init()
-pygame.time.delay(75)
-#making the screen
-WIDTH=800
-HEIGHT=800
-Rows=3
-Colums=3
-Wbox=25
-screen = pygame.display.set_mode((WIDTH,HEIGHT))
-pygame.display.set_caption("TIC TAC TOE GAME")
-#Define Colors
-BLACK=[0,0,0]
-WHITE=[255,255,255]
-RED=[255,0,0]
 
-TitleFont= pygame.font.SysFont("comicsans", 70)  #set the type of font and the size 
-WordFont=pygame.font.SysFont("comicsans", 50)
-LetterFont=pygame.font.SysFont("comicsans",40)
+import random, os, sys, datetime, time
 
-click=False
-def game_Init(message):
-    test=True
-    while test:
-        pygame.time.delay(500)
-        screen.fill(WHITE)
-        textPRINT= TitleFont.render("Menu", 1, BLACK)
-        screen.blit(textPRINT, (WIDTH/2 - textPRINT.get_width()/2, HEIGHT/2 - textPRINT.get_height()/2))
-pygame.display.update()
-pygame.time.delay(2000)
+def menu():
+    print("**********************")
+    print("* Menu for TICTACTOE *")
+    print("*                    *")
+    print("*       LEVEL1       *")
+    print("*       LEVEL2       *")
+    print("*       LEVEL3       *")
+    print("*                    *")
+    print("*       SCORES       *")
+    print("*      QUIT GAME     *")
+    print("*                    *")
+    print("**********************")
 
-       
-        #Print message
-screen.fill(WHITE)
-text = WordFont.render("TICTACTOE", 1, BLACK)
-screen.blit(text, (WIDTH/2 - text.get_width()/2, round(HEIGHT/3)))
-       
-        #rect1
-rect1=pygame.Rect(50, 350, Wbox*4,Wbox*2)
-pygame.draw.rect(screen, BLACK, rect1, width=1)
-text = LetterFont.render("level 1", 1, BLACK)
-screen.blit(text, (50 , 350))
-       
-        #rect 2
-rect2=pygame.Rect(200, 350, Wbox*4,Wbox*2)
-pygame.draw.rect(screen, BLACK, rect2, width=1)
-text = LetterFont.render("level 2", 1, BLACK)
-screen.blit(text, (200 , 350))
+    print("INSTRUCTIONS- Place an x or an o depending on if your player 1 or player 2. If you get three in a row you win.")
 
-Rect3=pygame.Rect(350,350, Wbox*4,Wbox*2)
-pygame.draw.rect(screen, BLACK, Rect3, width=1)
-text = LetterFont.render("Level3", 1, BLACK)
-screen.blit(text, (350 , 350))
+true= exit
+menu()
+answer=input("enter a number between 1-5")
+print()
+while answer!=5:
+    if answer == 1:
+        print("do you want to play")
+    if answer == ("yes"):
+        #TICTACTOE board from outside source
+        def print_tic_tac_toe(values):
+            print("\n")
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
+            print('\t_____|_____|_____')
 
-Rect4=pygame.Rect(500,350, Wbox*7,Wbox*2)
-pygame.draw.rect(screen, BLACK, Rect4, width=1)
-text = LetterFont.render("EXIT GAME", 1, BLACK)
-screen.blit(text, (500 , 350))
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
+            print('\t_____|_____|_____')
 
-Rect5=pygame.Rect(350,500, Wbox*5,Wbox*2)
-pygame.draw.rect(screen, BLACK, Rect5, width=1)
-text = LetterFont.render("SCORES", 1, BLACK)
-screen.blit(text, (350 , 500))
+            print("\t     |     |")
 
-for event in pygame.event.get():
-    pygame.display.update()  
-if event.type == pygame.QUIT:
-    pygame.quit()
-    sys.exit() 
-if event.type == pygame.MOUSEBUTTONDOWN:
-    mx,my= pygame.mouse.get_pos()
-    if rect1.collidepoint((mx,my)):
-        text = LetterFont.render("Level1!!", 1, BLACK)
-        screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-                #call main function
-    print("Level 1!!")
-    pygame.display.update()
-    pygame.time.delay(500)
-    if rect2.collidepoint((mx,my)):
-        text = LetterFont.render("Level2!!", 1, BLACK)
-    screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-    print("Level 2!!")
-    pygame.display.update()
-    pygame.time.delay(500)
-    if Rect3.collidepoint((mx,my)):
-        text = LetterFont.render("Level3!!", 1, BLACK)
-    screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-    print("Level 3!!")
-    pygame.display.update()
-    pygame.time.delay(500)
-    pygame.display.update()
-    pygame.time.delay(500)
-    if Rect4.collidepoint((mx,my)):
-        text = LetterFont.render("EXIT!!", 1, BLACK)
-    screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-    print("EXIT GAME")
-    pygame.display.update()
-    pygame.time.delay(500)
-    text = LetterFont.render("ScoreBoard!!", 1, BLACK)
-    screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-    if Rect5.collidepoint((mx,my)):
-        text = LetterFont.render("ScoreBoard!!", 1, BLACK)
-    screen.blit(text, (WIDTH/2-text.get_width()/2, HEIGHT/2))
-    print("ScoreBoard")
-    pygame.display.update()
-    pygame.time.delay(500)
+            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
+            print("\t     |     |")
+            print("\n")
+            wincheck=[[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+        if answer==("no"):
+            print("do you want to return to menu")
+        if answer ==("yes"):
+            print (menu)
+while answer!=5:
+    if answer == 2:
+        print("are you ready for level 2")
+    if answer==("yes"):
+        def print_tic_tac_toe(values):
+            print("\n")
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
+            print('\t_____|_____|_____')
+
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
+            print('\t_____|_____|_____')
+
+            print("\t     |     |")
+
+            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
+            print("\t     |     |")
+            print("\n")
+        wincheck= [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9]]
+    if wincheck==true:
+        print ("do you want to return to menu")
+    if answer==("Yes"):
+        print(menu)
+while answer!=5:
+    if answer==3:
+        print("do you want to play level3")
+    if answer==("yes"):
+        def print_tic_tac_toe(values):
+            print("\n")
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
+            print('\t_____|_____|_____')
+
+            print("\t     |     |")
+            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
+            print('\t_____|_____|_____')
+
+            print("\t     |     |")
+
+            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
+            print("\t     |     |")
+            print("\n")
+    if wincheck ==  [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7]]:
+        if wincheck==true:
+            print("do you want to see scores") 
+    if answer==("yes"):
+        # got scoreboard inspiritation from outside source
+        def print_scoreboard(score_board):
+            print("--------------------------------")
+            print("       	   SCOREBOARD       ")
+            print("--------------------------------")
+
+            players = list(score_board.keys())
+            print("   ", players[0], "    ", score_board[players[0]])
+            print("   ", players[1], "    ", score_board[players[1]])
+
+            print("--------------------------------\n")
+while answer!=1:
+    if answer==5:
+        print("are you sure you want to quit")
+    if answer==true:
+        print("thank you for playing")
+        exit
         
-test=False
 
-
-def main():
-    check=True 
-    while check:
-        for event in pygame.event.get():
-            if event.type== pygame.QUIT:
-                check= False
-        screen.fill(WHITE)
-        print("Level 1")
-        print("Level 2")
-        print("Level 3")
-
-
-pygame.quit()
-sys.exit() 
 
         
 
+
+
+        
+        
+        
