@@ -1,119 +1,308 @@
 #Ben Schackman
 #Making TICTACTOE Board
+#7/16/2021
 
 
 
 
 import random, os, sys, datetime, time
 
+from pygame.constants import SRCCOLORKEY
+
+TheBoard={'1':' ','2':' ','3':' ',
+          '4':' ','5':' ','6':' ',
+          '7':' ','8':' ','9':' '}
+
+BoardKeys=[]
+
+for key in TheBoard:
+    BoardKeys.append(key)
+#Making game board
+def printBoard(board):
+    print(board['1'] + '|' + board['2'] + '|' + board['3'])
+    print('-+-+-')
+    print(board['4'] + '|' + board['5'] + '|' + board['6'])
+    print('-+-+-')
+    print(board['7'] + '|' + board['8'] + '|' + board['9'])
+
+
+
+
+# Making menu
 def menu():
     print("**********************")
     print("* Menu for TICTACTOE *")
     print("*                    *")
-    print("*       LEVEL1       *")
-    print("*       LEVEL2       *")
-    print("*       LEVEL3       *")
+    print("*       1.LEVEL1     *")
+    print("*       2.LEVEL2     *")
+    print("*       3.LEVEL3     *")
     print("*                    *")
-    print("*       SCORES       *")
-    print("*      QUIT GAME     *")
+    print("*       4.SCORES     *")
+    print("*     5. QUIT GAME   *")
     print("*                    *")
     print("**********************")
 
     print("INSTRUCTIONS- Place an x or an o depending on if your player 1 or player 2. If you get three in a row you win.")
+Score=[0,0]
+def scoreboard(player):
+    global Score
+    if player=='X':
+        Score[0]+=1
+    elif player=='O':
+        Score[1]+=1
 
-true= exit
-menu()
-answer=input("enter a number between 1-5")
-print()
-while answer!=5:
-    if answer == 1:
-        print("do you want to play")
-    if answer == ("yes"):
-        #TICTACTOE board from outside source
-        def print_tic_tac_toe(values):
-            print("\n")
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
-            print('\t_____|_____|_____')
+tiescore=0
 
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
-            print('\t_____|_____|_____')
+def tie(player):
+    global tiescore
+    tiescore=tiescore+1
 
-            print("\t     |     |")
 
-            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
-            print("\t     |     |")
-            print("\n")
-            wincheck=[[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-        if answer==("no"):
-            print("do you want to return to menu")
-        if answer ==("yes"):
-            print (menu)
-while answer!=5:
-    if answer == 2:
-        print("are you ready for level 2")
-    if answer==("yes"):
-        def print_tic_tac_toe(values):
-            print("\n")
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
-            print('\t_____|_____|_____')
 
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
-            print('\t_____|_____|_____')
 
-            print("\t     |     |")
+#Level 1 making the game
+def level1():
+    player='X'
+    count=0
+    global Score
 
-            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
-            print("\t     |     |")
-            print("\n")
-        wincheck= [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    if wincheck==true:
-        print ("do you want to return to menu")
-    if answer==("Yes"):
-        print(menu)
-while answer!=5:
-    if answer==3:
-        print("do you want to play level3")
-    if answer==("yes"):
-        def print_tic_tac_toe(values):
-            print("\n")
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[0], values[1], values[2]))
-            print('\t_____|_____|_____')
+    for i in range(10):
+        printBoard(TheBoard)
+        print("choose a number to place on the board")
+        playermove=input()
+        
+        if TheBoard[playermove]==' ':
+            TheBoard[playermove]=player
+            count=count+1
+        else:
+            print("try again, spot is already taken")
+            continue
 
-            print("\t     |     |")
-            print("\t  {}  |  {}  |  {}".format(values[3], values[4], values[5]))
-            print('\t_____|_____|_____')
+        if count>=5:
+            if TheBoard['1'] == TheBoard['2'] == TheBoard['3'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+        
+            elif TheBoard['1'] == TheBoard['4'] == TheBoard['7'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
 
-            print("\t     |     |")
+            elif TheBoard['1'] == TheBoard['5'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
 
-            print("\t  {}  |  {}  |  {}".format(values[6], values[7], values[8]))
-            print("\t     |     |")
-            print("\n")
-    if wincheck ==  [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7]]:
-        if wincheck==true:
-            print("do you want to see scores") 
-    if answer==("yes"):
-        # got scoreboard inspiritation from outside source
-        def print_scoreboard(score_board):
-            print("--------------------------------")
-            print("       	   SCOREBOARD       ")
-            print("--------------------------------")
+            elif TheBoard['2'] == TheBoard['5'] == TheBoard['8'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
 
-            players = list(score_board.keys())
-            print("   ", players[0], "    ", score_board[players[0]])
-            print("   ", players[1], "    ", score_board[players[1]])
+            elif TheBoard['7'] == TheBoard['8'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
 
-            print("--------------------------------\n")
-while answer!=1:
-    if answer==5:
-        print("are you sure you want to quit")
-    if answer==true:
-        print("thank you for playing")
-        exit
+            elif TheBoard['3'] == TheBoard['5'] == TheBoard['7'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['3'] == TheBoard['6'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['4'] == TheBoard['5'] == TheBoard['6'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+    
+        if count==9:
+            print("Tie Game!")
+            tie(player)
+            break
+
+        if player=='X':
+            player='O'
+        else:
+            player='X'
+    for key in BoardKeys:
+        TheBoard[key]=" "
+    print("press enter for main menu")
+    input()
+    main()
+
+#Level 2 being made
+def level2():
+    player='X'
+    count=0
+    global Score
+
+    for i in range(10):
+        printBoard(TheBoard)
+        print("choose a number to place on the board")
+        playermove=input()
+        
+        if TheBoard[playermove]==' ':
+            TheBoard[playermove]=player
+            count=count+1
+        else:
+            print("try again, spot is already taken")
+            continue
+
+        if count>=5:
+            if TheBoard['1'] == TheBoard['2'] == TheBoard['3'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+        
+            elif TheBoard['1'] == TheBoard['4'] == TheBoard['7'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['1'] == TheBoard['5'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['2'] == TheBoard['5'] == TheBoard['8'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['7'] == TheBoard['8'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['3'] == TheBoard['5'] == TheBoard['7'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+    
+        if count==9:
+            print("Tie Game!")
+            tie(player)
+            break
+
+        if player=='X':
+            player='O'
+        else:
+            player='X'
+    for key in BoardKeys:
+        TheBoard[key]=" "
+    print("press enter for main menu")
+    input()
+    main()
+
+
+# Level 3 being made
+def level3():
+    player='X'
+    count=0
+    global Score
+
+    for i in range(10):
+        printBoard(TheBoard)
+        print("choose a number to place on the board")
+        playermove=input()
+        
+        if TheBoard[playermove]==' ':
+            TheBoard[playermove]=player
+            count=count+1
+        else:
+            print("try again, spot is already taken")
+            continue
+
+        if count>=5:
+            if TheBoard['1'] == TheBoard['2'] == TheBoard['3'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+        
+            elif TheBoard['1'] == TheBoard['4'] == TheBoard['7'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['1'] == TheBoard['5'] == TheBoard['9'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+
+            elif TheBoard['2'] == TheBoard['5'] == TheBoard['8'] !=' ':
+                printBoard(TheBoard)
+                print(player+" won the game")
+                scoreboard(player)
+                break
+    
+        if count==9:
+            print("Tie Game!")
+            tie(player)
+            break
+
+        if player=='X':
+            player='O'
+        else:
+            player='X'
+    for key in BoardKeys:
+        TheBoard[key]=" "
+    print("press enter for main menu")
+    input()
+    main()
+
+#main function
+def main():
+    while True:
+        menu()
+        answer=int(input("enter a number between 1-5"))
+        if answer==1:
+            print("now playing level 1")
+            level1()
+            break
+        if answer==2:
+            print("now playing level 2")
+            level2()
+            break
+        if answer==3:
+            print("now playing level 3")
+            level3()
+            break
+        if answer==4:
+            print("scores")
+            print("X wins=",end='')
+            print(Score[0])
+            print("O wins=",end='')
+            print(Score[1])
+            print("Tie =",end='')
+            print(tiescore)
+            break
+        if answer==5:
+            print("Goodbye, thank you for playing!!")
+            exit()
+
+if __name__ == "__main__":
+    main()
         
 
 
