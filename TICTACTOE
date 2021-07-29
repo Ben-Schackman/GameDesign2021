@@ -17,7 +17,7 @@ BoardKeys=[]
 
 for key in TheBoard:
     BoardKeys.append(key)
-#Making game board
+
 def printBoard(board):
     print(board['1'] + '|' + board['2'] + '|' + board['3'])
     print('-+-+-')
@@ -28,7 +28,7 @@ def printBoard(board):
 
 
 
-# Making menu
+
 def menu():
     print("**********************")
     print("* Menu for TICTACTOE *")
@@ -60,7 +60,7 @@ def tie(player):
 
 
 
-#Level 1 making the game
+
 def level1():
     player='X'
     count=0
@@ -142,7 +142,6 @@ def level1():
     input()
     main()
 
-#Level 2 being made
 def level2():
     player='X'
     count=0
@@ -213,7 +212,7 @@ def level2():
     main()
 
 
-# Level 3 being made
+
 def level3():
     player='X'
     count=0
@@ -271,7 +270,7 @@ def level3():
     input()
     main()
 
-#main function
+
 def main():
     while True:
         menu()
@@ -289,14 +288,28 @@ def main():
             level3()
             break
         if answer==4:
-            print("scores")
-            print("X wins=",end='')
-            print(Score[0])
-            print("O wins=",end='')
-            print(Score[1])
-            print("Tie =",end='')
-            print(tiescore)
-            break
+            f=open("TicTacToeScores.txt","w")
+            f.write("X Wins: ")
+            f.write(str(Score[0]))
+            f.write("\n")
+            f.write("O Wins: ")
+            f.write(str(Score[1]))
+            f.write("\n")
+            f.write("Tie: ")
+            f.write(str(tiescore))
+            f.write("\n")
+            f.close()
+
+            choice=int(input("press 1 to print scores"))
+
+            if choice ==1:
+                f = open("TicTacToeScores.txt","r")
+                file_contents = f.read()
+                print(file_contents)
+                f.close()
+                continue
+            else:
+                continue
         if answer==5:
             print("Goodbye, thank you for playing!!")
             exit()
